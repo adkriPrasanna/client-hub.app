@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ClientCreateForm from './components/ClientCreateForm.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ClientCreateForm
   }
 }
 </script>
@@ -40,3 +40,7 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<div id="app">
+  <client-create-form></client-create-form>
+</div>
