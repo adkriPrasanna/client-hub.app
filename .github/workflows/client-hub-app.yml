@@ -1,4 +1,4 @@
-name: client-hub.app
+name: client-hub-app
 
 on:
  push:
