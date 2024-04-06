@@ -1,5 +1,5 @@
 # STYLE CI
-Style CI can be integrated with GitHub for the purpose of formatting code.
+Style CI can be integrated with GitHub for the purpose of formatting code. Style CI picks .styleci.yml file for configuration.
 
 ### During the process following steps were followed:
 
