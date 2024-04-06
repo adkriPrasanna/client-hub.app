@@ -32,15 +32,20 @@ jobs:
         cd backend
         composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Copy .env.example to .env
-      run: |
-        cd backend
-        php -r "file_exists('.env') || copy('.env.example', '.env');"
+    # - name: Copy .env.example to .env
+    #   run: |
+    #     cd backend
+    #     php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - name: Generate Application Key
+    - name: Read Environment File
       run: |
         cd backend
-        php artisan key:generate --ansi
+        cat .env >>${GITHUB_ENV}
+
+    # - name: Generate Application Key
+    #   run: |
+    #     cd backend
+    #     php artisan key:generate --ansi
 
     - name: Run tests
       run: |
