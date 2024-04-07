@@ -30,7 +30,8 @@ class ClientRepository extends CrudRepository implements ClientInterface
         return Storage::disk('csv')->put($csvFileName, $csvHeaders);
     }
 
-    public function prepareCsvContent($client): string {
+    public function prepareCsvContent($client): string
+    {
         $csvContent = [];
         foreach ($client as $key => $value) {
             $csvContent[] = $value;
