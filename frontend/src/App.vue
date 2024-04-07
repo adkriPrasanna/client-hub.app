@@ -1,3 +1,33 @@
+<template>
+  <div id="app">
+    <div class="logo">Client Hub</div>
+    <a href="#/">Home</a> |
+    <a href="#/clients">Clients</a> |
+    <component :is="currentView" />
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue';
+import ClientsComponent from './components/ClientsComponent.vue';
+import ClientCreateForm from './components/ClientCreateForm.vue';
+
+const routes = {
+  '/': ClientCreateForm,
+  '/clients': ClientsComponent,
+};
+
+const currentPath = ref(window.location.hash);
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash;
+});
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'];
+});
+</script>
+
 <style>
 .logo {
   font-family: 'Arial', sans-serif;
@@ -10,27 +40,7 @@
   background-color: #f8f9fa;
   display: inline-block;
 }
-</style>
 
-<template>
-  <div id="app">
-    <div class="logo">Client Hub</div>
-    <ClientCreateForm />
-  </div>
-</template>
-
-<script>
-import ClientCreateForm from './components/ClientCreateForm.vue';
-
-export default {
-  name: 'App',
-  components: {
-    ClientCreateForm
-  }
-}
-</script>
-
-<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -40,7 +50,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-
-<div id="app">
-  <client-create-form></client-create-form>
-</div>

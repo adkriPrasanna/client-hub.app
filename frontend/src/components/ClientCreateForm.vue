@@ -83,7 +83,7 @@
 import axios from 'axios';
 
 export default {
-    name: 'ClientForm',
+    name: 'ClientCreateForm',
     data() {
         return {
             form: {
