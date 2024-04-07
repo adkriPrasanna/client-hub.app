@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+        <div v-if="flash.error || flash.success" class="alert"
+            :class="{ 'alert-danger': flash.error, 'alert-success': flash.success }">
+            {{ flash.error || flash.success }}
+            <button type="button" class="close" @click="flash.error = flash.success = null">&times;</button>
+        </div>
         <form @submit.prevent="submitForm">
             <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label custom-label">Name</label>
@@ -92,25 +97,28 @@ export default {
                 education_background: '',
                 preferred_mode_of_contact: '',
             },
+            flash: {
+                success: null,
+                error: null
+            }
         };
     },
+
     methods: {
         submitForm() {
             const API_URL = process.env.VUE_APP_API_URL;
-            axios.post(`${API_URL}/client`, this.form)
-                .then(response => {
-                    console.log(response.data);
-                    // Handle success
-                })
-                .catch(error => {
-                    console.error(error);
-                    // Handle error
-                });
-        },
+            axios.post(`${API_URL}/client`, this.form).then(response => {
+                if (response.data.status === false) {
+                    throw new Error(response.data.message);
+                }
+                // redirect to /clients route from here
+            }).catch(error => {
+                console.log(error);
+                this.flash.success = null;
+                this.flash.error = error;
+            });
+        }
     }
-
-
-
 };
 </script>
 
