@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <div v-if="flash.error || flash.success" class="alert"
+        <div v-if="flash.error || flash.success" class="alert text-center"
             :class="{ 'alert-danger': flash.error, 'alert-success': flash.success }">
             {{ flash.error || flash.success }}
             <button type="button" class="close" @click="flash.error = flash.success = null">&times;</button>
         </div>
-        <form @submit.prevent="submitForm">
+
+        <h2 style="text-align: center;">Add Client</h2>
+        <form @submit.prevent="submitForm" class="needs-validation" novalidate>
             <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label custom-label">Name</label>
                 <div class="col-sm-9">
@@ -83,7 +85,7 @@
 import axios from 'axios';
 
 export default {
-    name: 'ClientCreateForm',
+    name: 'ClientCreateComponent',
     data() {
         return {
             form: {
@@ -103,7 +105,6 @@ export default {
             }
         };
     },
-
     methods: {
         submitForm() {
             const API_URL = process.env.VUE_APP_API_URL;
@@ -111,7 +112,8 @@ export default {
                 if (response.data.status === false) {
                     throw new Error(response.data.message);
                 }
-                // redirect to /clients route from here
+                localStorage.setItem('success', response.data.message);
+                window.location.href = '#/clients';
             }).catch(error => {
                 console.log(error);
                 this.flash.success = null;
@@ -121,11 +123,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-.custom-label {
-    text-align: left;
-    padding-right: 15px;
-    /* Adjust this value to control the gap on the right side of the label */
-}
-</style>
