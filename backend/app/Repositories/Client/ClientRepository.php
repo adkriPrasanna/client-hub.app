@@ -3,8 +3,9 @@
 namespace App\Repositories\Client;
 
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\Crud\CrudRepository;
 
-class ClientRepository implements ClientInterface
+class ClientRepository extends CrudRepository implements ClientInterface
 {
     public function checkIfFileExists(): bool
     {
