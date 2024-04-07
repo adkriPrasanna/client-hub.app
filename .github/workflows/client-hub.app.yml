@@ -1,4 +1,4 @@
-name: client-hub-app
+name: client-hub.app
 
 on:
  push:
@@ -41,6 +41,11 @@ jobs:
       run: |
         cd backend
         php artisan key:generate --ansi
+
+    - name: Run Pint
+      run: |
+        cd backend
+        ./vendor/bin/pint
 
     - name: Run tests
       run: |

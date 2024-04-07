@@ -1,0 +1,3 @@
+```bash
+vue create frontend
+```
