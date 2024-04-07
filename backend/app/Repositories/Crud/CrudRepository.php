@@ -9,11 +9,12 @@ abstract class CrudRepository implements CrudInterface
 {
     public function store($client): JsonResponse
     {
-        $csvContent = [];
-        foreach ($client as $key => $value) {
-            $csvContent[] = $value;
+        if (!$this->checkIfFileExists()) {
+            $this->createFile($client);
         }
-        $csvContent = implode(',', $csvContent);
+
+        $csvContent = $this->prepareCsvContent($client);
+
         $csvFileName = 'clients.csv';
         Storage::disk('csv')->append($csvFileName, $csvContent);
 
