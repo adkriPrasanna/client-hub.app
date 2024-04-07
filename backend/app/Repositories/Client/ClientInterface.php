@@ -8,4 +8,5 @@ interface ClientInterface
     public function createCsvHeaders($client): string;
     public function createFile(array $client): bool;
     public function prepareCsvContent($client): string;
+    public function fetchClients(): array;
 }

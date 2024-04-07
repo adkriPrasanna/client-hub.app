@@ -7,4 +7,5 @@ use Illuminate\Http\JsonResponse;
 interface CrudInterface
 {
     public function store($data): JsonResponse;
+    public function list(): JsonResponse;
 }

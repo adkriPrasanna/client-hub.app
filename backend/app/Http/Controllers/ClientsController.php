@@ -19,10 +19,21 @@ class ClientsController extends Controller
         $this->clientRepository = $clientRepository;
     }
 
+    public function list(): JsonResponse {
+
+        try {
+            return $this->responseSuccess($this->clientRepository->list([]), 'Partners fetched successfully.');
+        } catch (Exception $e) {
+            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
+
+            return $this->responseError();
+        }
+    }
+
     public function store(Request $request): JsonResponse
     {
         try {
-            return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
+            return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partner added successfully.');
         } catch (Exception $e) {
             Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
 
