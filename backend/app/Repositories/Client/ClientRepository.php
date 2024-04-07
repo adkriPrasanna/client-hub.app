@@ -3,8 +3,9 @@
 namespace App\Repositories\Client;
 
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\Crud\CrudRepository;
 
-class ClientRepository implements ClientInterface
+class ClientRepository extends CrudRepository implements ClientInterface
 {
     public function checkIfFileExists(): bool
     {
@@ -27,5 +28,15 @@ class ClientRepository implements ClientInterface
         $csvFileName = 'clients.csv';
         $csvHeaders = $this->createCsvHeaders($client);
         return Storage::disk('csv')->put($csvFileName, $csvHeaders);
+    }
+
+    public function prepareCsvContent($client): string
+    {
+        $csvContent = [];
+        foreach ($client as $key => $value) {
+            $csvContent[] = $value;
+        }
+        $csvContent = implode(',', $csvContent);
+        return $csvContent;
     }
 }
