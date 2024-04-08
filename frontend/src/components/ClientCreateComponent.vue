@@ -19,13 +19,13 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label custom-label">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" id="name" v-model="form.name" class="form-control">
+                    <input type="text" id="name" v-model="form.name" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="gender" class="col-sm-3 col-form-label custom-label">Gender</label>
                 <div class="col-sm-9">
-                    <select id="gender" v-model="form.gender" class="form-control">
+                    <select id="gender" v-model="form.gender" class="form-control" required>
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -35,44 +35,44 @@
             <div class="form-group row">
                 <label for="phone" class="col-sm-3 col-form-label custom-label">Phone</label>
                 <div class="col-sm-9">
-                    <input type="text" id="phone" v-model="form.phone" class="form-control">
+                    <input type="text" id="phone" v-model="form.phone" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label custom-label">Email</label>
                 <div class="col-sm-9">
-                    <input type="email" id="email" v-model="form.email" class="form-control">
+                    <input type="email" id="email" v-model="form.email" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="address" class="col-sm-3 col-form-label custom-label">Address</label>
                 <div class="col-sm-9">
-                    <input type="text" id="address" v-model="form.address" class="form-control">
+                    <input type="text" id="address" v-model="form.address" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nationality" class="col-sm-3 col-form-label custom-label">Nationality</label>
                 <div class="col-sm-9">
-                    <input type="text" id="nationality" v-model="form.nationality" class="form-control">
+                    <input type="text" id="nationality" v-model="form.nationality" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="dob" class="col-sm-3 col-form-label custom-label">Date of Birth</label>
                 <div class="col-sm-9">
                     <input type="date" id="dob" v-model="form.date_of_birth" class="form-control"
-                        placeholder="mm/dd/yyyy">
+                        placeholder="mm/dd/yyyy" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="education" class="col-sm-3 col-form-label custom-label">Education Background</label>
                 <div class="col-sm-9">
-                    <input type="text" id="education" v-model="form.education_background" class="form-control">
+                    <input type="text" id="education" v-model="form.education_background" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contact" class="col-sm-3 col-form-label custom-label">Preferred Mode of Contact</label>
                 <div class="col-sm-9">
-                    <select id="contact" v-model="form.preferred_mode_of_contact" class="form-control">
+                    <select id="contact" v-model="form.preferred_mode_of_contact" class="form-control" required>
                         <option value="">Select Preferred Contact</option>
                         <option value="email">Email</option>
                         <option value="phone">Phone</option>
