@@ -31,6 +31,9 @@ COPY ./backend/.env.example /var/www/html/.env
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install dependencies
+RUN composer install
+
 RUN php artisan key:generate --ansi
 
 # Ensure storage directory exists and is writable
