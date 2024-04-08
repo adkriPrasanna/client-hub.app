@@ -20,8 +20,8 @@ class ClientsController extends Controller
         $this->clientRepository = $clientRepository;
     }
 
-    public function list(): JsonResponse {
-
+    public function list(): JsonResponse
+    {
         try {
             return $this->responseSuccess($this->clientRepository->list([]), 'Partners fetched successfully.');
         } catch (Exception $e) {
