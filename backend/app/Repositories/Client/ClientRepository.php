@@ -39,4 +39,15 @@ class ClientRepository extends CrudRepository implements ClientInterface
         $csvContent = implode(',', $csvContent);
         return $csvContent;
     }
+
+    public function fetchClients(): array {
+        if(!$this->checkIfFileExists()) {
+            return [];
+        }
+        $csvContent = Storage::disk('csv')->get('clients.csv');
+        $rows = array_map('str_getcsv', explode(PHP_EOL, $csvContent));
+        array_shift($rows); // skip header from csv file
+        return $rows;
+
+    }
 }

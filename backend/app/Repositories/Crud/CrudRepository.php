@@ -20,4 +20,15 @@ abstract class CrudRepository implements CrudInterface
 
         return response()->json(['data' => $csvContent]);
     }
+
+    public function list(): JsonResponse
+    {
+        if (!$this->checkIfFileExists()) {
+            return response()->json(['data' => []]);
+        }
+
+        $csvContent = $this->fetchClients();
+
+        return response()->json(['data' => $csvContent]);
+    }
 }

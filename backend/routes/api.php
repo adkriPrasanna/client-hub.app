@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/client', [ClientsController::class, 'store'])->name('create.partner');
+Route::get('/client', [ClientsController::class, 'list'])->name('list.partner');

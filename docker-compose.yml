@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  client-hub-backend-service:
+    container_name: cleint-hub-backend-container
+    build:
+      context: .
+      dockerfile: ./backend/.docker/Dockerfile
+    image: cleint-hub-backend-image
+    volumes:
+      - ./backend/:/var/www/html
+    expose:
+      - 8080
+    ports:
+      - 8000:80
+
+  client-hub-frontend-service:
+    container_name: cleint-hub-frontend-container
+    build:
+      context: .
+      dockerfile: ./frontend/.docker/Dockerfile
+    image: cleint-hub-frontend-image
+    volumes:
+      - ./frontend/:/app
+    ports:
+      - 8080:80
