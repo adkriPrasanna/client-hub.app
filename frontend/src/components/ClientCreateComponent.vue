@@ -5,7 +5,15 @@
             {{ flash.error || flash.success }}
             <button type="button" class="close" @click="flash.error = flash.success = null">&times;</button>
         </div>
-
+        <div class="alert alert-danger" v-if="Object.keys(formErrors).length > 0">
+            <span v-for="(errorMessages, field) in formErrors" :key="field">
+                <ul>
+                    <li v-for="(errorMessage, index) in errorMessages" :key="index">
+                        {{ errorMessage }}
+                    </li>
+                </ul>
+            </span>
+        </div>
         <h2 style="text-align: center;">Add Client</h2>
         <form @submit.prevent="submitForm" class="needs-validation" novalidate>
             <div class="form-group row">
@@ -102,7 +110,8 @@ export default {
             flash: {
                 success: null,
                 error: null
-            }
+            },
+            formErrors: {}
         };
     },
     methods: {
@@ -117,9 +126,15 @@ export default {
             }).catch(error => {
                 console.log(error);
                 this.flash.success = null;
-                this.flash.error = error;
+                if (error.response.status === 422) {
+                    this.formErrors = error.response.data.errors;
+                    console.log(this.formErrors);
+                } else {
+                    this.flash.error = error;
+                }
             });
         }
     }
 };
+
 </script>
